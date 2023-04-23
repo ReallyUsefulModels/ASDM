@@ -1,0 +1,24 @@
+# mamba env update -f ./environment.yml --prune
+# The `- -e .` option under `- pip:` installs `asdm` as a local development package
+# This allows easier importing without having to add the avoidable_admissions folder to PATH.
+name: asdm
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib
+  - networkx
+  - numpy
+  - pandas
+  - pymc3
+  - scipy
+  - theano-pymc
+  - lxml
+  - beautifulsoup4
+  - tqdm
+  - ipywidgets
+  - openpyxl
+  - ipykernel
+  - streamlit
+  - pip:
+      - -e .
