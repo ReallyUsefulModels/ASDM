@@ -49,17 +49,19 @@ def poisson_likelihood(observed, simulated, weight=1.0):
 def binomial_log_likelihood_payoff_contribution(observed, simulated, p=0.5, weight=1.0):
     if observed < 0:
         observed = 0  # data_n_events should be an integer >= 0
-    
+
     if simulated < 1:  # the modelled frequency of events must be an integer >= 0
         simulated = 1
 
-    if observed > simulated:  # the observed frequency of events shoud not be greater than simulated (trails)
+    if (
+        observed > simulated
+    ):  # the observed frequency of events shoud not be greater than simulated (trails)
         observed = simulated
 
-    return np.log((p**observed) * ((1-p)**(simulated - observed)))
+    return np.log((p**observed) * ((1 - p) ** (simulated - observed)))
 
 
 # absolute error
 # payoff contribution is always negative, see: https://www.vensim.com/documentation/payoffcomputation.html
 def absolute_error_payoff_contribution(observed, simulated, weight=1.0):
-    return (-1)*(((simulated-observed)*weight)**2)
+    return (-1) * (((simulated - observed) * weight) ** 2)
